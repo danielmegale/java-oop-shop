@@ -24,12 +24,12 @@ public class Prodotto {
 	}
 	private void setCodice() {
 		Random rdm= new Random();
-		int rdmCodice=rdm.nextInt(0,10);
+		int rdmCodice=rdm.nextInt(0,Integer.MAX_VALUE);
 		this.codice = rdmCodice;
 	}
 	public String getNome() {
-		String fullName= codice+"-"+nome;
-		return fullName;
+		
+		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -53,13 +53,25 @@ public class Prodotto {
 		
 		this.iva = iva;
 	}
-	
-	
 	public String getPrezzoCompleto() {
 		double prezzoIva = (prezzo*iva)/100;
 		double prezzoCompleto =prezzoIva+prezzo;
 		return String.format("%.02f",prezzoCompleto);
 	}
-	
-	
+	public String getCodeName() {
+	String fullName= codice+"-"+nome;
+	return fullName;
+	}
+	public String getCodiceEsteso() { 
+		String pippo= String.valueOf(codice);
+		String zeros="";
+		int sot=8-pippo.length();
+		if( pippo.length() <= 8) {
+			for(int i=0 ;i<sot;i++){
+				zeros+="0";
+			}
+		}
+		return zeros+codice;
+		
+	}
 }
